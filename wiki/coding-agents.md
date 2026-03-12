@@ -47,4 +47,12 @@ Docs:
 
 ### Skill name
 
+The skill name is an identifier that selects which [skill](#skill) to run. It matches the name of the skill directory (e.g., `commit`, `review-file`).
+
+Example: `commit` in `commit @main.py`.
+
 ### Skill arguments
+
+Skill arguments are the inputs passed to a [skill](#skill) after the [skill name](#skill-name). The expected format depends on the skill (e.g., a [file path](./file-system.md#file-path), a list of files, or no arguments at all).
+
+Example: `@main.py` in `commit @main.py`.
