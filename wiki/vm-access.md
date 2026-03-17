@@ -422,6 +422,58 @@ Complete these steps:
         UseKeychain yes
      ```
 
+## Connect to the VM as the user `<user>` (LOCAL)
+
+> [!NOTE]
+> Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
+
+1. [Connect to the correct network](./vm.md#connect-to-the-correct-network).
+
+2. [Open a new `VS Code Terminal`](./vs-code.md#vs-code-terminal).
+
+3. To connect to the VM as the user `<user>`,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   ssh se-toolkit-vm
+   ```
+
+   Replace the placeholder [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address-placeholder).
+
+4. To confirm you are logged in as the user `<user>`,
+   not [the user `root`](./linux.md#the-user-root),
+   look at the [shell prompt](./shell.md#ssh-shell-prompt).
+
+   You should see:
+
+   ```terminal
+   <user>@<your-vm-name>:~$
+   ```
+
+   > 🟦 **Note**
+   >
+   > [`<user>`](./operating-system.md#user-placeholder) is the same as you specified when [adding the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local).
+   >
+   > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
+
+## Harden the `SSH` connection
+
+Complete these steps:
+
+<!-- no toc -->
+1. [Harden the `SSH` config (LOCAL)](#harden-the-ssh-config-local).
+2. [Harden the `SSH` config for the user `<user>` (REMOTE)](#harden-the-ssh-config-for-the-user-user-remote).
+3. [Restart `sshd` (REMOTE)](#restart-sshd-remote).
+4. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local).
+
+### Harden the `SSH` config (LOCAL)
+
+1. [Open the file](./vs-code.md#open-the-file-or-the-directory-using-code):
+   `~/.ssh/config`.
+
+2. Add `PasswordAuthentication no` there:
+
    - `Linux`, `Windows`:
 
      ```text
@@ -445,27 +497,7 @@ Complete these steps:
         UseKeychain yes
      ```
 
-## Connect to the VM as the user `<user>` (LOCAL)
-
-> [!NOTE]
-> Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
-
-1. To connect as the user `<user>`,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   ssh se-toolkit-vm
-   ```
-
-   Replace the placeholder [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address-placeholder).
-
-2. To confirm you are logged in as the user `<user>`,
-   not [the user `root`](./linux.md#the-user-root),
-
-   Look at the [shell prompt](./shell.md#ssh-shell-prompt).
-
-   It should start with `<user>`.
+3. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local) to verify you can connect as the user `<user>` without a password.
 
 ## Harden the `SSH` config (REMOTE)
 
