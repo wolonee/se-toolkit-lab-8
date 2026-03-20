@@ -612,7 +612,12 @@ Complete these steps:
    PasswordAuthentication no
    ```
 
-5. Save (`Ctrl+O`, `Enter`).
+5. To write the changes:
+
+   1. Press `Ctrl+O`.
+   2. Press `Enter`.
+
+6. To close the editor, press `Ctrl+X`.
 
 ### Restart `sshd` (REMOTE)
 
