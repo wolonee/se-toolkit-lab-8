@@ -60,7 +60,9 @@ class SessionHandlers:
 
 
 class MessageHandler:
-    def __init__(self, nanobot_client: NanobotClient, user_keys: dict[int, str]) -> None:
+    def __init__(
+        self, nanobot_client: NanobotClient, user_keys: dict[int, str]
+    ) -> None:
         self.nanobot_client = nanobot_client
         self.user_keys = user_keys
 
@@ -69,11 +71,11 @@ class MessageHandler:
             return
         api_key = self.user_keys.get(message.from_user.id, "")
         if not api_key:
-            await message.answer(
-                "🔑 Please set your API key first: /login <api_key>"
-            )
+            await message.answer("🔑 Please set your API key first: /login <api_key>")
             return
-        response = await route_intent(message.text, self.nanobot_client, api_key=api_key)
+        response = await route_intent(
+            message.text, self.nanobot_client, api_key=api_key
+        )
         await render(message, response)
 
     async def handle_callback(self, callback: types.CallbackQuery) -> None:
@@ -88,5 +90,7 @@ class MessageHandler:
                 "🔑 Please set your API key first: /login <api_key>"
             )
             return
-        response = await route_intent(callback.data, self.nanobot_client, api_key=api_key)
+        response = await route_intent(
+            callback.data, self.nanobot_client, api_key=api_key
+        )
         await render(callback.message, response)
