@@ -83,7 +83,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
    docker compose --env-file .env.docker.secret ps --format "table {{.Service}}\t{{.Status}}"
    ```
 
-   You should see all four services running:
+   You should see the core LMS web stack services running, for example:
 
    ```text
    SERVICE    STATUS

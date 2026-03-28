@@ -51,8 +51,10 @@
                     ${pkgs.lib.getExe pkgs.lychee} \
                       --include-fragments \
                       --offline \
+                      --max-cache-age 0d \
                       --no-progress \
                       --exclude-path '.venv' \
+                      --exclude-path '.uv-cache' \
                       --exclude-path '.direnv' \
                       --exclude-path 'node_modules' \
                       --exclude-path 'tmp' \
@@ -70,7 +72,8 @@
                     ${pkgs.lib.getExe pkgs.markdownlint-cli2} \
                       '**/*.md' \
                       '#.direnv' \
-                      '#.venv' \
+                      '#**/.venv' \
+                      '#**/.uv-cache' \
                       '#**/node_modules' \
                       '#*/skills' \
                       '#tmp' \

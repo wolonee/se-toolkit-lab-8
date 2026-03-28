@@ -11,9 +11,9 @@
   - [`Caddyfile`](#caddyfile)
 - [`Caddy` duties](#caddy-duties)
   - [Listen on the specific port](#listen-on-the-specific-port)
-- [Forward requests to the backend](#forward-requests-to-the-backend)
-- [Forward requests to `pgAdmin`](#forward-requests-to-pgadmin)
-- [Serve frontend files](#serve-frontend-files)
+  - [Forward requests to the backend](#forward-requests-to-the-backend)
+  - [Forward requests to `pgAdmin`](#forward-requests-to-pgadmin)
+  - [Serve frontend files](#serve-frontend-files)
 
 ## About the gateway
 

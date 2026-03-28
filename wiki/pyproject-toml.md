@@ -28,10 +28,10 @@
 [`pyproject.toml`](../pyproject.toml) is the central configuration file for a [`Python`](./python.md#what-is-python) project.
 It defines project metadata, dependencies, and tool settings in [`TOML`](./file-formats.md#toml) format.
 
-This project uses a [`uv` workspace](#tooluvworkspace) layout with two `pyproject.toml` files:
+This project uses a [`uv` workspace](#tooluvworkspace) layout with a root `pyproject.toml` and multiple member packages:
 
 - [`pyproject.toml`](../pyproject.toml) (root) — configures the workspace, shared development tools, a [task runner](#toolpoetasks), and [static analysis](./quality-assurance.md#static-analysis) tools.
-- [`backend/pyproject.toml`](./backend-pyproject-toml.md#what-is-backendpyprojecttoml) — defines the backend application metadata and runtime dependencies.
+- Member `pyproject.toml` files, such as [`backend/pyproject.toml`](./backend-pyproject-toml.md#what-is-backendpyprojecttoml), define package metadata and runtime dependencies for their own workspace members.
 
 Docs:
 
@@ -43,7 +43,14 @@ Declares a [`uv`](./python.md#uv) workspace and lists its member packages.
 
 ```toml
 [tool.uv.workspace]
-members = ["backend"]
+members = [
+  "backend",
+  "qwen-code-api",
+  "mcp/mcp-lms",
+  "mcp/mcp-obs",
+  "nanobot-websocket-channel/nanobot-webchat",
+  "nanobot-websocket-channel/client-telegram-bot",
+]
 ```
 
 - **`members`** — directories that contain their own `pyproject.toml` files.
@@ -89,7 +96,7 @@ This ensures the code passes all [static analysis](./quality-assurance.md#static
 
 ```toml
 [tool.poe.tasks.dev-unsafe]
-cmd = "python backend/app/run.py"
+cmd = "python -m lms_backend.run"
 ```
 
 Starts the backend server without running [static analysis](./quality-assurance.md#static-analysis) first.
@@ -223,7 +230,7 @@ Configures [`pytest`](./python.md#pytest).
 ```toml
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
-pythonpath = ["backend"]
+pythonpath = ["backend/src"]
 asyncio_mode = "auto"
 ```
 

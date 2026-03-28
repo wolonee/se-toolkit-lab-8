@@ -9,12 +9,32 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUTPUT = REPO_ROOT / "backend" / "openapi.json"
 
-# Enable all conditional routers so the full schema is exported
-os.environ.setdefault("LMS_API_KEY", "dummy")
-os.environ.setdefault("BACKEND_ENABLE_INTERACTIONS", "true")
-os.environ.setdefault("BACKEND_ENABLE_LEARNERS", "true")
+# Seed the minimal backend settings required to import the app and export its
+# schema in CI without depending on a real runtime environment.
+_EXPORT_ENV_DEFAULTS = {
+    "NAME": "Learning Management Service",
+    "DEBUG": "false",
+    "ADDRESS": "0.0.0.0",
+    "PORT": "8000",
+    "RELOAD": "false",
+    "LMS_API_KEY": "dummy",
+    "CORS_ORIGINS": "[]",
+    "BACKEND_ENABLE_INTERACTIONS": "true",
+    "BACKEND_ENABLE_LEARNERS": "true",
+    "AUTOCHECKER_API_URL": "http://example.invalid",
+    "AUTOCHECKER_API_LOGIN": "dummy",
+    "AUTOCHECKER_API_PASSWORD": "dummy",
+    "DB_HOST": "localhost",
+    "DB_PORT": "5432",
+    "DB_NAME": "dummy",
+    "DB_USER": "dummy",
+    "DB_PASSWORD": "dummy",
+}
 
-from app.main import app
+for name, value in _EXPORT_ENV_DEFAULTS.items():
+    os.environ[name] = value
+
+from lms_backend.main import app
 
 
 def main() -> None:

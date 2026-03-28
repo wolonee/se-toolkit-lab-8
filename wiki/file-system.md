@@ -119,7 +119,7 @@ Starts from the current directory.
 
 Examples:
 
-- `backend/app/`
+- `backend/src/lms_backend/`
 - `./docs/`
 
 ## Special paths

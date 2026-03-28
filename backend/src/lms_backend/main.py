@@ -11,9 +11,9 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import RequestResponseEndpoint
 from starlette.responses import Response
 
-from app.auth import verify_api_key
-from app.routers import analytics, interactions, items, learners, pipeline
-from app.settings import settings
+from lms_backend.auth import verify_api_key
+from lms_backend.routers import analytics, interactions, items, learners, pipeline
+from lms_backend.settings import settings
 
 logger = logging.getLogger(__name__)
 
@@ -56,10 +56,16 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
 
 
 @app.middleware("http")
-async def log_requests(request: Request, call_next: RequestResponseEndpoint) -> Response:
+async def log_requests(
+    request: Request, call_next: RequestResponseEndpoint
+) -> Response:
     logger.info(
         "request_started",
-        extra={"event": "request_started", "method": request.method, "path": request.url.path},
+        extra={
+            "event": "request_started",
+            "method": request.method,
+            "path": request.url.path,
+        },
     )
     t0 = time.perf_counter()
     response = await call_next(request)

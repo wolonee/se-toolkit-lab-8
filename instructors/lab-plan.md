@@ -60,11 +60,11 @@ The `setup-simple.md` adjustments for this lab:
 
 ### Task 1 — Set Up the Agent
 
-Students create a repo-local `nanobot/` project from scratch, install the framework from PyPI, run the onboard wizard, connect the agent to the LMS via MCP, and write the first LMS skill prompt.
+Students create a repo-local `nanobot/` project from scratch, install the framework at a pinned Git commit, run the onboard wizard, connect the agent to the LMS via MCP, and write the first LMS skill prompt.
 
-**Part A — Install nanobot and connect to Qwen API.** Students run `uv init nanobot`, `uv add nanobot-ai`, and `nanobot onboard`. Bare agent answers general questions but hallucinates about the LMS.
+**Part A — Install nanobot and connect to Qwen API.** Students run `uv init nanobot`, `uv add "nanobot-ai ..."`, and `nanobot onboard --config ./config.json --workspace ./workspace`. Bare agent answers general questions but hallucinates about the LMS.
 
-**Part B — Give the agent LMS tools.** Students install the provided `mcp/mcp_lms/` package into the repo-local project, register it in config, and pass backend env vars. Agent now returns real data.
+**Part B — Give the agent LMS tools.** Students install the provided `mcp/mcp-lms/` package into the repo-local project, register it in config, and pass backend env vars. Agent now returns real data.
 
 **Part C — Write a skill prompt.** Students teach the agent how to use LMS tools well: ask for missing lab parameters, format results cleanly, and explain its current capabilities when the user asks.
 
@@ -185,7 +185,7 @@ Trace database. When a request flows through multiple services, each step is a s
 
 Main branch = working LMS with no agent. Students create `nanobot/` from scratch.
 
-**Provided:** backend, postgres, caddy, react, qwen-code-api (submodule + compose service), VictoriaLogs/Traces/OTel (in compose), `mcp/mcp_lms/` (provided tools, not wired), Flutter client (external repo, added as submodule in Task 2).
+**Provided:** backend, postgres, caddy, react, qwen-code-api (submodule + compose service), VictoriaLogs/Traces/OTel (in compose), `mcp/mcp-lms/` (provided tools, not wired), Flutter client (external repo, added as submodule in Task 2).
 
 **Created by students:** `nanobot/` directory (pyproject.toml, config.json, entrypoint.py, Dockerfile), uncommented and adapted Compose/Caddy glue, skill prompts, observability MCP tools, bug fix, scheduled health-check jobs via the `cron` tool, REPORT.md.
 
@@ -193,13 +193,13 @@ Main branch = working LMS with no agent. Students create `nanobot/` from scratch
 
 Real-world setup: `uv init nanobot && cd nanobot && uv add nanobot-ai`, then write config and Dockerize. Not clone a pre-configured submodule. Students understand every file because they created it.
 
-#### Why `mcp/mcp_lms/` is provided
+#### Why `mcp/mcp-lms/` is provided
 
 Domain-specific code — someone on the team already wrote the LMS tools. Lets Task 1 focus on agent setup, not re-implementing API wrappers from Lab 7. Students write their own MCP tools in Task 3 (observability).
 
 #### Why bare agent comes before tools
 
-If `mcp/mcp_lms/` is wired from the start, the coding agent sets everything up in one shot. Task 1A creates config without MCP → checkpoint forces verification → Task 1B adds MCP. Can't skip the comparison.
+If `mcp/mcp-lms/` is wired from the start, the coding agent sets everything up in one shot. Task 1A creates config without MCP -> checkpoint forces verification -> Task 1B adds MCP. Can't skip the comparison.
 
 ### Agent prompt injections
 

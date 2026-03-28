@@ -50,7 +50,7 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
 
 #### 1.1.6. Sync your fork with upstream
 
-1. [Sync your fork](../../wiki/github.md#sync-a-fork) so you have the latest changes from the course repository.
+1. [Sync your fork](../../wiki/git-workflow.md#pull-changes-from-the-branch-main-on-the-remote-upstream) so you have the latest changes from the course repository.
 
    Do this **before cloning** to the VM, and again whenever the instructors push updates.
 
@@ -88,20 +88,27 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
    >
    > **Option A — SSH key** (recommended, one-time setup):
    > 1. On the VM, generate a key (skip if `~/.ssh/id_ed25519.pub` already exists):
+   >
    >    ```
    >    ssh-keygen -t ed25519 -C "your-email@example.com"
    >    ```
+   >
    >    Press Enter three times to accept defaults (no passphrase is fine).
    > 2. Print the public key:
+   >
    >    ```
    >    cat ~/.ssh/id_ed25519.pub
    >    ```
+   >
    > 3. Copy the output. In your browser, go to <https://github.com/settings/keys> → **New SSH key** → paste → **Add SSH key**.
    > 4. Clone with the SSH URL instead of HTTPS:
+   >
    >    ```
    >    git clone --recurse-submodules git@github.com:YOUR_GITHUB_USERNAME/se-toolkit-lab-8.git
    >    ```
+   >
    >    Or, if you already cloned via HTTPS, switch the remote:
+   >
    >    ```
    >    git remote set-url origin git@github.com:YOUR_GITHUB_USERNAME/se-toolkit-lab-8.git
    >    ```
@@ -109,6 +116,7 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
    > **Option B — Personal access token** (quick, less secure):
    > 1. In your browser, go to <https://github.com/settings/tokens> → **Generate new token (classic)** → select **`repo`** scope → **Generate token**.
    > 2. Copy the token. On the VM, run:
+   >
    >    ```
    >    git remote set-url origin https://YOUR_TOKEN@github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-8.git
    >    ```
@@ -273,7 +281,7 @@ docker compose --env-file .env.docker.secret down
 
 The database starts empty. You need to run the ETL pipeline to populate it with data from the autochecker API.
 
-1. Open `http://<your-vm-ip>:42002/docs` in your browser (or `localhost:42002` if you forwarded the port via VS Code).
+1. Open `http://<your-vm-ip-address>:42002/docs` in your browser (or `localhost:42002` if you forwarded the port via VS Code).
 
    You should see the Swagger UI page.
 
@@ -303,11 +311,11 @@ The database starts empty. You need to run the ETL pipeline to populate it with 
 
 ### 1.6. Verify the deployment on your VM
 
-1. Open `http://<your-vm-ip>:42002/docs` in your browser.
+1. Open `http://<your-vm-ip-address>:42002/docs` in your browser.
 
    You should see the Swagger UI with all endpoints.
 
-2. Open `http://<your-vm-ip>:42002/` in your browser.
+2. Open `http://<your-vm-ip-address>:42002/` in your browser.
 
    You should see the React dashboard. Enter your `LMS_API_KEY` to connect.
 

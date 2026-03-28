@@ -5,7 +5,7 @@ import logging
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.models.item import ItemRecord
+from lms_backend.models.item import ItemRecord
 
 logger = logging.getLogger(__name__)
 
@@ -13,13 +13,21 @@ logger = logging.getLogger(__name__)
 async def read_items(session: AsyncSession) -> list[ItemRecord]:
     """Read all items from the database."""
     try:
-        logger.info("db_query", extra={"event": "db_query", "table": "item", "operation": "select"})
+        logger.info(
+            "db_query",
+            extra={"event": "db_query", "table": "item", "operation": "select"},
+        )
         result = await session.exec(select(ItemRecord))
         return list(result.all())
     except Exception as exc:
         logger.error(
             "db_query",
-            extra={"event": "db_query", "table": "item", "operation": "select", "error": str(exc)},
+            extra={
+                "event": "db_query",
+                "table": "item",
+                "operation": "select",
+                "error": str(exc),
+            },
         )
         raise
 

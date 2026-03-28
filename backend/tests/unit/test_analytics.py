@@ -15,9 +15,9 @@ from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 from sqlmodel import SQLModel
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.models.item import ItemRecord
-from app.models.learner import Learner
-from app.models.interaction import InteractionLog
+from lms_backend.models.item import ItemRecord
+from lms_backend.models.learner import Learner
+from lms_backend.models.interaction import InteractionLog
 
 
 def _patch_jsonb_to_json() -> None:
@@ -191,8 +191,8 @@ async def seed_data(session: AsyncSession):
 @pytest.fixture
 async def client(engine: AsyncEngine, seed_data: None):
     """Create a test HTTP client with the test database injected."""
-    from app.main import app
-    from app.database import get_session
+    from lms_backend.main import app
+    from lms_backend.database import get_session
 
     async def override_session():
         async with AsyncSession(engine) as sess:

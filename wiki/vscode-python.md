@@ -84,7 +84,7 @@ Complete these steps:
 > See [`Pylance`](./python.md#pylance).
 
 1. [Open the file](./vs-code.md#open-the-file):
-   [`backend/app/main.py`](../backend/app/main.py).
+   [`backend/src/lms_backend/main.py`](../backend/src/lms_backend/main.py).
 2. Hover over the `add_middleware` method.
 
    You should see its type:

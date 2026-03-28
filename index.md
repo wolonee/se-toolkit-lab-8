@@ -52,33 +52,33 @@ Branching, committing, opening PRs, and the review process used throughout the l
 
 Entry point and configuration:
 
-- [`backend/app/main.py`](backend/app/main.py) — FastAPI app creation and router registration.
-- [`backend/app/settings.py`](backend/app/settings.py) — environment-based configuration.
-- [`backend/app/auth.py`](backend/app/auth.py) — API key authentication dependency.
-- [`backend/app/database.py`](backend/app/database.py) — database session setup.
-- [`backend/app/run.py`](backend/app/run.py) — entry point for running the server.
+- [`backend/src/lms_backend/main.py`](backend/src/lms_backend/main.py) — FastAPI app creation and router registration.
+- [`backend/src/lms_backend/settings.py`](backend/src/lms_backend/settings.py) — environment-based configuration.
+- [`backend/src/lms_backend/auth.py`](backend/src/lms_backend/auth.py) — API key authentication dependency.
+- [`backend/src/lms_backend/database.py`](backend/src/lms_backend/database.py) — database session setup.
+- [`backend/src/lms_backend/run.py`](backend/src/lms_backend/run.py) — entry point for running the server.
 
 Routers (HTTP endpoints):
 
-- [`backend/app/routers/items.py`](backend/app/routers/items.py)
-- [`backend/app/routers/interactions.py`](backend/app/routers/interactions.py)
-- [`backend/app/routers/learners.py`](backend/app/routers/learners.py)
+- [`backend/src/lms_backend/routers/items.py`](backend/src/lms_backend/routers/items.py)
+- [`backend/src/lms_backend/routers/interactions.py`](backend/src/lms_backend/routers/interactions.py)
+- [`backend/src/lms_backend/routers/learners.py`](backend/src/lms_backend/routers/learners.py)
 
 Models (Pydantic schemas):
 
-- [`backend/app/models/item.py`](backend/app/models/item.py)
-- [`backend/app/models/interaction.py`](backend/app/models/interaction.py)
-- [`backend/app/models/learner.py`](backend/app/models/learner.py)
+- [`backend/src/lms_backend/models/item.py`](backend/src/lms_backend/models/item.py)
+- [`backend/src/lms_backend/models/interaction.py`](backend/src/lms_backend/models/interaction.py)
+- [`backend/src/lms_backend/models/learner.py`](backend/src/lms_backend/models/learner.py)
 
 Database queries:
 
-- [`backend/app/db/items.py`](backend/app/db/items.py)
-- [`backend/app/db/interactions.py`](backend/app/db/interactions.py)
-- [`backend/app/db/learners.py`](backend/app/db/learners.py)
+- [`backend/src/lms_backend/db/items.py`](backend/src/lms_backend/db/items.py)
+- [`backend/src/lms_backend/db/interactions.py`](backend/src/lms_backend/db/interactions.py)
+- [`backend/src/lms_backend/db/learners.py`](backend/src/lms_backend/db/learners.py)
 
 Database seed:
 
-- [`backend/app/data/init.sql`](backend/app/data/init.sql) — initial schema and data loaded on first `PostgreSQL` start.
+- [`backend/src/lms_backend/data/init.sql`](backend/src/lms_backend/data/init.sql) — initial schema and data loaded on first `PostgreSQL` start.
 
 ## Infrastructure
 

@@ -149,6 +149,10 @@ This section explains what each configuration artifact exists for and why it is 
 - [`.gitattributes`](../.gitattributes) — Normalizes line endings to LF (`* text=auto eol=lf`) and marks binary files (`*.png`, `*.pdf`) so `Git` handles them correctly across operating systems.
 - [`.gitmodules`](../.gitmodules) — Defines `Git` submodules (e.g., `instructors/meetings` pointing to a separate meetings repository). Included only when submodules are used.
 
+When bundling external source repositories as submodules, place them under `packages/` (for example, `packages/nanobot-ai`) rather than `vendor/` or the repository root.
+Use `packages/` for code that is installed from a local path but is not a first-party workspace member.
+This keeps bundled package sources separate from lab-owned services such as `backend/` and `mcp/`, while making commands like `uv add <name> --path ../packages/<name>` read naturally.
+
 ### 2.3. Editor and linting
 
 - [`.vscode/settings.json`](../.vscode/settings.json) — Configures auto-save, format-on-save, language-specific formatters, and Markdown preview behavior. Ensures all contributors use consistent editor settings. See [VS Code settings](#5-vs-code-settings-vscodesettingsjson) for the canonical configuration.
@@ -387,7 +391,7 @@ The Dockerfile follows a two-stage `uv sync` pattern:
 4. `COPY .` — copy the full source code.
 5. `uv sync --frozen --package <name>` — install the workspace package.
 
-The `--package` argument must match the `name` field in the member's `pyproject.toml` (e.g., `lms-backend`, `lms-client-telegram-bot`, `lms-nanobot`).
+The `--package` argument must match the `name` field in the member's `pyproject.toml` (e.g., `lms-backend`, `client-telegram-bot`, `nanobot-webchat`).
 
 Each service has its own `.dockerignore` scoped to its directory.
 

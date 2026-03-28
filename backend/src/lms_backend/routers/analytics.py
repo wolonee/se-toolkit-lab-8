@@ -10,10 +10,10 @@ from sqlalchemy import case, cast, func, Numeric
 from sqlmodel import col, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.database import get_session
-from app.models.interaction import InteractionLog
-from app.models.item import ItemRecord
-from app.models.learner import Learner
+from lms_backend.database import get_session
+from lms_backend.models.interaction import InteractionLog
+from lms_backend.models.item import ItemRecord
+from lms_backend.models.learner import Learner
 
 router = APIRouter()
 

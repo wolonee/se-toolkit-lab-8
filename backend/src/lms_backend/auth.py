@@ -5,7 +5,7 @@ import logging
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from app.settings import settings
+from lms_backend.settings import settings
 
 logger = logging.getLogger(__name__)
 

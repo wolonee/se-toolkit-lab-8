@@ -3,7 +3,7 @@
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.models.interaction import InteractionLog
+from lms_backend.models.interaction import InteractionLog
 
 
 async def read_interactions(session: AsyncSession) -> list[InteractionLog]:

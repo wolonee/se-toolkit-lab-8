@@ -6,9 +6,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.exc import IntegrityError
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.database import get_session
-from app.db.learners import read_learners, create_learner
-from app.models.learner import Learner, LearnerCreate
+from lms_backend.database import get_session
+from lms_backend.db.learners import read_learners, create_learner
+from lms_backend.models.learner import Learner, LearnerCreate
 
 router = APIRouter()
 

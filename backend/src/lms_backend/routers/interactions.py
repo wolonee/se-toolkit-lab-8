@@ -4,9 +4,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.exc import IntegrityError
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.database import get_session
-from app.db.interactions import create_interaction, read_interactions
-from app.models.interaction import (
+from lms_backend.database import get_session
+from lms_backend.db.interactions import create_interaction, read_interactions
+from lms_backend.models.interaction import (
     InteractionLog,
     InteractionLogCreate,
     InteractionModel,

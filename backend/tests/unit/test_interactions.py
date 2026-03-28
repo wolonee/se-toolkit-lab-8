@@ -1,7 +1,7 @@
 """Unit tests for interaction filtering logic."""
 
-from app.models.interaction import InteractionLog
-from app.routers.interactions import filter_by_item_id
+from lms_backend.models.interaction import InteractionLog
+from lms_backend.routers.interactions import filter_by_item_id
 
 
 def _make_log(id: int, learner_id: int, item_id: int) -> InteractionLog:

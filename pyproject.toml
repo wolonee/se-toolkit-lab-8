@@ -1,17 +1,27 @@
 [tool.uv.workspace]
-members = ["backend", "mcp", "qwen-code-api"]
+members = [
+  "backend",
+  "qwen-code-api",
+  "mcp/mcp-lms",
+  # "mcp/mcp-obs",
+  # "nanobot-websocket-channel/nanobot-webchat",
+  # "nanobot-websocket-channel/client-telegram-bot",
+]
 
 [tool.uv.sources]
-lms-mcp = { workspace = true }
+mcp-lms = { path = "mcp/mcp-lms", editable = true }
+# mcp-obs = { path = "mcp/mcp-obs", editable = true }
+# nanobot-webchat = { path = "nanobot-websocket-channel/nanobot-webchat", editable = true }
+# client-telegram-bot = { path = "nanobot-websocket-channel/client-telegram-bot", editable = true }
 
 [dependency-groups]
 dev = [
-  "poethepoet>=0.40.0",
+  "poethepoet==0.42.1",
   "pyright==1.1.408",
   "pytest==9.0.2",
-  "pytest-asyncio>=0.25.0",
-  "ruff==0.14.14",
-  "ty==0.0.13",
+  "pytest-asyncio==1.3.0",
+  "ruff==0.15.8",
+  "ty==0.0.26",
 ]
 
 [tool.ruff]
@@ -32,7 +42,7 @@ sequence = ["check", "dev-unsafe"]
 ## Run server
 [tool.poe.tasks.dev-unsafe]
 help = "Run server without static analysis"
-cmd = "python backend/app/run.py"
+cmd = "python -m lms_backend.run"
 
 # Run static analysis
 
@@ -91,12 +101,12 @@ envfile = "backend/.env.tests.e2e.secret"
 [tool.poe.tasks.export-openapi]
 help = "Export OpenAPI schema to openapi.json"
 cmd = "python scripts/export-openapi.py"
-env = { PYTHONPATH = "backend" }
+env = { PYTHONPATH = "backend/src" }
 
 [tool.poe.tasks.check-openapi]
 help = "Check that openapi.json is up to date"
 cmd = "python scripts/export-openapi.py --check"
-env = { PYTHONPATH = "backend" }
+env = { PYTHONPATH = "backend/src" }
 
 # Query Qwen Code API
 
@@ -110,28 +120,35 @@ include = [
   "scripts",
   "mcp",
   "qwen-code-api",
+  # "nanobot-websocket-channel",
 ]
-extraPaths = ["backend", "qwen-code-api"]
-exclude = [
-  "**/__pycache__",
-  "**/node_modules",
-  "**/.*",
-  ".venv",
-  ".direnv",
+extraPaths = [
+  "backend/src",
+  "mcp/mcp-lms/src",
+  "mcp/mcp-obs/src",
+  "qwen-code-api/src",
+  # "nanobot-websocket-channel/client-telegram-bot/src",
+  # "nanobot-websocket-channel/nanobot-channel-protocol/src",
+  # "nanobot-websocket-channel/nanobot-webchat/src",
 ]
+exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", ".direnv"]
 typeCheckingMode = "strict"
 reportAssignmentType = "none"
 reportIncompatibleVariableOverride = "none"
 reportUnknownMemberType = "none"
+reportMissingTypeStubs = "none"
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
-pythonpath = ["backend"]
+pythonpath = ["backend/src"]
 asyncio_mode = "auto"
 
 [tool.ty.src]
-include = ["backend", "mcp", "qwen-code-api"]
+include = [
+  "backend",
+  "mcp",
+  "qwen-code-api",
+  # "nanobot-websocket-channel"
+]
 
-# TODO: remove after upgrading to ty>=0.0.26 (fixes ParamSpec, see https://github.com/astral-sh/ty/issues/1635)
 [tool.ty.rules]
-invalid-argument-type = "warn"

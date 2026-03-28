@@ -14,10 +14,10 @@ from pydantic import BaseModel
 from sqlmodel import col, select, func
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.models.interaction import InteractionLog
-from app.models.item import ItemRecord
-from app.models.learner import Learner
-from app.settings import settings
+from lms_backend.models.interaction import InteractionLog
+from lms_backend.models.item import ItemRecord
+from lms_backend.models.learner import Learner
+from lms_backend.settings import settings
 
 
 # ---------------------------------------------------------------------------

@@ -4,9 +4,9 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.exc import IntegrityError
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.database import get_session
-from app.db.items import create_item, read_item, read_items, update_item
-from app.models.item import ItemCreate, ItemRecord, ItemUpdate
+from lms_backend.database import get_session
+from lms_backend.db.items import create_item, read_item, read_items, update_item
+from lms_backend.models.item import ItemCreate, ItemRecord, ItemUpdate
 
 router = APIRouter()
 
@@ -14,13 +14,7 @@ router = APIRouter()
 @router.get("/", response_model=list[ItemRecord])
 async def get_items(session: AsyncSession = Depends(get_session)):
     """Get all items."""
-    try:
-        return await read_items(session)
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Items not found",
-        ) from exc
+    return await read_items(session)
 
 
 @router.get("/{item_id}", response_model=ItemRecord)

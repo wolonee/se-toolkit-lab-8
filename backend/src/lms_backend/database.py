@@ -5,7 +5,7 @@ from collections.abc import AsyncGenerator
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.settings import settings
+from lms_backend.settings import settings
 
 
 def get_database_url() -> str:

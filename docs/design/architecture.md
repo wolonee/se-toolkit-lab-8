@@ -126,7 +126,7 @@ classDiagram
 
 ## 4. Container Diagram
 
-The system is deployed as seven Docker containers, orchestrated by Docker Compose. The React and Flutter frontends are compiled into static files and served by Caddy. The nanobot AI agent exposes a WebSocket endpoint that both the Flutter web app and the Telegram bot connect to.
+The system is deployed as a Docker Compose stack. The diagram below highlights the main user-facing containers. The React and Flutter frontends are compiled into static files and served by Caddy. The nanobot AI agent exposes a WebSocket endpoint that both the Flutter web app and the Telegram bot connect to. Supporting services such as `qwen-code-api`, `victorialogs`, `victoriatraces`, and `otel-collector` are part of the full stack but omitted here to keep the diagram readable.
 
 ```mermaid
 graph TD

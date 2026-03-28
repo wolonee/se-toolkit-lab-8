@@ -3,8 +3,8 @@
 from fastapi import APIRouter, Depends
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.database import get_session
-from app.etl import sync
+from lms_backend.database import get_session
+from lms_backend.etl import sync
 
 router = APIRouter()
 
