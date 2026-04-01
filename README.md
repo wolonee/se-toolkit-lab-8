@@ -31,6 +31,7 @@ By the end of the lab, the system looks like this.
 
 In Lab 7 you built one client around your own LLM loop. Here, the agent becomes a shared system layer that multiple clients can talk to — and that layer has reusable tools, memory, and scheduled actions.
 
+
 ```
 [Browser]            [Telegram, optional]
     \                       /
