@@ -22,6 +22,8 @@ By the end of this lab, you should be able to say:
 > 4. I built MCP tools that let the agent query logs and traces, turning observability data into a conversational interface.
 > 5. I used the agent to investigate a failure, fix a planted bug, and configure it to report system health proactively.
 
+
+
 ## Architecture
 
 By the end of the lab, the system looks like this.
