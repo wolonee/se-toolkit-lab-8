@@ -24,6 +24,7 @@ By the end of this lab, you should be able to say:
 
 
 
+
 ## Architecture
 
 By the end of the lab, the system looks like this.
